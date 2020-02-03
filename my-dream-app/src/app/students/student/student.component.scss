@@ -1,0 +1,15 @@
+.student-new-form {
+  
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  .form-error {
+    color:red;
+    font-size: 0.875rem;
+  }
+  input {
+    width: 50%;
+    display: table-cell;
+  }
+}

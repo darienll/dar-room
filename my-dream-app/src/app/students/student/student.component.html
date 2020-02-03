@@ -1,0 +1,21 @@
+<div class="student-new-form">
+    <form [formGroup]="form" (ngSubmit)="addStudent()">
+      <div class="form-group">
+        <input type="text" formControlName="firstName" placeholder="First Name">
+        <div class="form-error" *ngIf="formSubmited && form.get('firstName').errors?.required">This field is required</div>
+      </div>
+      <div class="form-group">
+        <input type="text" formControlName="lastName" placeholder="Last Name">
+        <div class="form-error" *ngIf="formSubmited && form.get('lastName').errors?.required">This field is required</div>
+      </div>
+      <div class="form-group">
+        <input type="text" formControlName="score" placeholder="Score">
+      </div>
+      <div [formGroup]="courseFG" class="form-group" *ngFor="let courseFG of form.get('courses').controls">
+        <input type="text" formControlName="name" placeholder="Course name">
+        <div class="form-error" *ngIf="formSubmited && courseFG.get('name').errors?.required">This field is required</div>
+      </div>
+      <button type="button" (click)="addCourse()">Add course</button>
+      <button type="submit">Save</button>    
+    </form>
+  </div>

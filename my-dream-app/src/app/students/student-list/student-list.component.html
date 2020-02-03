@@ -1,0 +1,27 @@
+<h2>
+  Students list
+</h2>
+<a routerLink="/student">Create student</a>
+<div class="student-search">
+  <input type="text" [(ngModel)]="searchQuery" (ngModelChange) = "search()" placeholder="Search for student name" />
+</div>
+
+<table *ngIf="studentsToShow">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Score</th>
+      <th>Course</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of studentsToShow" 
+      app-student-list-item [student]="student"  
+      (removed) = "removeStudent($event)" > 
+    </tr>
+  </tbody>  
+</table>
+

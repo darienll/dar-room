@@ -1,0 +1,23 @@
+<h2>Faculty list</h2>
+<a routerLink="/faculty">Create faculty</a>
+<div class="student-search">
+<input type="text" [(ngModel)]="searchQuery" (ngModelChange) = "search()" placeholder="Search for student name" />
+</div>
+
+<table *ngIf="facultiesToShow">
+<thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let faculty of facultiesToShow" 
+        app-faculty-list-item [faculty]="faculty" 
+        (removed) = "removeFaculty($event)">
+    </tr> 
+</tbody>  
+</table>
+  
+  

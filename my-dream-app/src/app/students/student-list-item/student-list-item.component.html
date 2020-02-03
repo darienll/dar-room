@@ -1,0 +1,16 @@
+<!-- <div class="studet-item"> -->
+ <ng-container class="student-item"> 
+  <td (click)="editStudent()">{{ student.id }}</td>
+  <td>{{ student.firstName }}</td>
+  <td>{{ student.lastName }} </td>
+  <td><span class="student-item-span" [ngClass]="{ 'red': student.score < 8 }">{{ student.score }}</span></td>
+  <td>
+    <div *ngFor="let course of student.courses">
+      {{ course.name }}
+    </div>
+  </td>
+  <td>
+    <button type="action" (click)="removeStudent()">Remove</button>
+    <button type="action" (click)="updateStudent()">Update</button>
+  </td>
+</ng-container>
