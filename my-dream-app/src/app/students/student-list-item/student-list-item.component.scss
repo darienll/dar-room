@@ -1,14 +1,21 @@
-    :host {
-        // display:block;
-        margin: 1.2rem 0;
+    // :host {
+    //     // display:block;
+    //     margin: 1.2rem 0;
     
-    .student-item {
-        font-size : 1.2rem;
-        .red {
-            color : red;
-        }
-    }
-}
+    // .student-item {
+    //     font-size : 1.2rem;
+    //     .red {
+    //         color : red;
+    //     }
+    // }
+// }
 .red {
     color:red;
+}
+td:hover {
+    cursor: pointer;
+    background-color: #eefffd;
+}
+a:hover {
+    text-decoration: underline;
 }

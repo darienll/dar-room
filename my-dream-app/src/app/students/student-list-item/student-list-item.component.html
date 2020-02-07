@@ -1,6 +1,6 @@
 <!-- <div class="studet-item"> -->
  <ng-container class="student-item"> 
-  <td (click)="editStudent()">{{ student.id }}</td>
+  <td (click)="editStudent()"><a>{{ student.id }}</a></td>
   <td>{{ student.firstName }}</td>
   <td>{{ student.lastName }} </td>
   <td><span class="student-item-span" [ngClass]="{ 'red': student.score < 8 }">{{ student.score }}</span></td>

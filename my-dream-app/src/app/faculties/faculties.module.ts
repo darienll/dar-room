@@ -5,10 +5,15 @@ import { FacultyListItemComponent } from './faculty-list-item/faculty-list-item.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Route } from '@angular/router';
 import { FacultyComponent } from './faculty/faculty.component';
-
+import { FacultyResolver } from './faculty.resolver';
 const routes: Route[] = [
-  { path: 'faculties', component: FacultyListComponent },
-  { path: 'faculty/:id', component: FacultyComponent },
+  { path: '', component: FacultyListComponent },
+  { path: 'faculty/:id',
+    component: FacultyComponent,
+    resolve: {
+      faculty: FacultyResolver
+    }
+  },
   { path: 'faculty', component: FacultyComponent },
 ]
 
@@ -22,7 +27,10 @@ const routes: Route[] = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forChild(routes),
+  ],
+  providers: [
+    FacultyResolver
   ]
 })
 export class FacultiesModule { }

@@ -21,7 +21,6 @@ export class FacultyListItemComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    console.log(this.faculty)
   }
 
   removeFaculty() {
@@ -33,7 +32,7 @@ export class FacultyListItemComponent implements OnInit {
   }
 
   editFaculty() {
-    this.router.navigate(['faculty', this.faculty.id]);
+    this.router.navigate(['faculties','faculty', this.faculty.id]);
  
   }
 

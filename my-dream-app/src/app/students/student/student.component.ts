@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class StudentComponent implements OnInit {
 
-  public formSubmited = false;
+  public formSubmitted = false;
   
   form: FormGroup;
 
@@ -33,21 +33,18 @@ export class StudentComponent implements OnInit {
       courses: new FormArray([]),
       // score :  new FormControl('', Validators.required),
     });
-    this.route.params.subscribe(params => {
-      if (params.id) {
-        this.studentRestService.getStudent(params.id)
-          .subscribe(student => {
-            this.student = student;
-            this.form.patchValue(this.student);
-            if (this.student.courses) {
-              this.student.courses.forEach(course => {
-                const arrayControl = this.form.get('courses') as FormArray
-                arrayControl.push(new FormGroup({
-                  name: new FormControl(course.name, Validators.required),
-                }))
-              })
-            }
-          });
+    this.route.data.subscribe(data => {
+      if (data.student) {
+          this.student = data.student;
+          this.form.patchValue(data.student);
+          if (this.student.courses) {
+            this.student.courses.forEach(course => {
+              const arrayControl = this.form.get('courses') as FormArray
+              arrayControl.push(new FormGroup({
+                name: new FormControl(course.name, Validators.required),
+              }))
+            })
+          }
       }
     });
   }
@@ -60,7 +57,7 @@ export class StudentComponent implements OnInit {
   }
 
   addStudent() {
-    this.formSubmited = true;
+    this.formSubmitted = true;
     if (!this.form.valid) {
       return;
     }
@@ -86,7 +83,7 @@ export class StudentComponent implements OnInit {
         this.router.navigate(['students']);
       }
     });
-    this.formSubmited = false;
+    this.formSubmitted = false;
     this.form.reset();
   }
 }

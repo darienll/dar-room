@@ -40,7 +40,7 @@ export class StudentListItemComponent implements OnInit {
   }
 
   editStudent() {
-    this.router.navigate(['student', this.student.id]);
+    this.router.navigate(['students','student', this.student.id]);
 
   }
 

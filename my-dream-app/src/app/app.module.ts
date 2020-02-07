@@ -5,28 +5,44 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { StudentListComponent } from './students/student-list/student-list.component';
-// import { StudentListItemComponent } from './students/student-list-item/student-list-item.component';
-// import { StudentEditItemComponent } from './students/student-edit-item/student-edit-item.component';
+
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { StudentsModule } from './students/students.module';
-import { FacultiesModule } from './faculties/faculties.module';
-
+import { AuthGuard } from './shared/auth.guard';
+import {} from './shared/auth.guard';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegistrationComponent } from './registration/registration.component'
 
 const routes: Route[] = [
-  { path:'', component:  HomeComponent },
+  { path: '', 
+    component: DashboardComponent,
+    canActivate: [AuthGuard], 
+    children: [
+      { path:'', component:  HomeComponent },
+      { path:'faculties',
+        loadChildren : () => import('./faculties/faculties.module').then(m => m.FacultiesModule)
+      },
+      {
+        path: 'students',
+        loadChildren : () => import('./students/students.module').then(m => m.StudentsModule)
+      },  
+    ]
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'registration', component: RegistrationComponent },
   { path:'**', component:  PageNotFoundComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    // StudentListComponent,
-    // StudentListItemComponent,
-    // StudentEditItemComponent,
     HomeComponent, 
     PageNotFoundComponent,
+    LoginComponent,
+    DashboardComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,8 +51,8 @@ const routes: Route[] = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    StudentsModule,
-    FacultiesModule
+    // StudentsModule,
+    // FacultiesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

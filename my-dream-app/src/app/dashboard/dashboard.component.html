@@ -1,0 +1,29 @@
+<div class="layout">
+    <header class="header">
+            <div class="header__logo">
+                <img src="../assets/dar.svg" width="50" height=50% />
+                <!-- <p>Dar academy</p> -->
+            </div>
+            <div class="header__login">
+                <button (click)="logOut()">Sign out</button>
+            </div>
+    </header>
+    <div class="main">
+        <aside class="sidebar">
+            <ul class="nav">
+                <li>
+                    <a routerLink="/">Home</a>
+                </li>
+                <li>
+                    <a routerLink="/students">Students</a>
+                </li>
+                <li>
+                    <a routerLink="/faculties">Faculties</a>
+                </li>
+            </ul>
+        </aside>
+        <section class="content">
+            <router-outlet></router-outlet>
+        </section>
+    </div>  
+</div>

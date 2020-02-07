@@ -15,6 +15,8 @@ export class FacultyComponent implements OnInit {
 
   faculty: Faculty;
 
+  public formSubmitted = false;
+
   constructor(
     private facultyRestService: FacultyRestService,
     private router: Router,
@@ -25,18 +27,16 @@ export class FacultyComponent implements OnInit {
     this.form = new FormGroup({
       name: new FormControl('', Validators.required)
     });
-    this.route.params.subscribe(params => {
-      if (params.id) {
-        this.facultyRestService.getFaculty(params.id)
-          .subscribe(faculty => {
-            this.faculty = faculty;
-            this.form.patchValue(this.faculty);
-          })
+    this.route.data.subscribe(data => {
+      if (data.faculty) {
+        this.faculty = data.faculty;
+        this.form.patchValue(data.faculty);  
       }
     })
   }
 
   addFaculty() {
+    this.formSubmitted = true;
     if (!this.form.valid) return;
     const newFaculty: Faculty = {
       name: this.form.get('name').value,
@@ -57,6 +57,7 @@ export class FacultyComponent implements OnInit {
           this.router.navigate(['faculties']);
         }
       })
+      this.formSubmitted = false;
   }
 
 }

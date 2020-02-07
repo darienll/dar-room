@@ -4,7 +4,7 @@ table {
     width: 100%;
   }
   tr {
-    cursor: pointer;
+    // cursor: pointer;
   }
   
   td, th, tr {
@@ -14,7 +14,7 @@ table {
 
   }
   tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #eefffd;
   }
   
 .student-search {

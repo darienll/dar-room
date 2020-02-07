@@ -5,11 +5,16 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { Route, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentComponent } from './student/student.component';
+import { StudentResolver } from './student.resolver';
 
 
 const routes: Route[] = [
-  { path: 'students', component: StudentListComponent},
-  { path: 'student/:id', component: StudentComponent},
+  { path: '', component: StudentListComponent},
+  { path: 'student/:id', component: StudentComponent,
+    resolve: {
+      student: StudentResolver
+    }
+  },
   { path: 'student', component: StudentComponent},
 
 ];
@@ -25,6 +30,9 @@ const routes: Route[] = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
+  ],
+  providers: [
+    StudentResolver
   ]
 })
 export class StudentsModule { }
