@@ -1,12 +1,19 @@
 .login-form {
+    // background-color: blue; 
+    // margin-top: 20px;
+    border: 1px solid;
+    padding: 1rem 1rem;
+    // border: 1px;
+    border-radius: 3px!important;
     display: flex;
     flex-flow: column nowrap;
     flex: 1;
     height: 100%;
-    width: 60%;
-    margin: 0 auto;
+    width: 50%;
+    margin: 5% auto;
     .form-group {
         display: flex;
+        flex: 1;
         flex-flow: column nowrap;
         margin-bottom: 1.5rem;
         .form-error {
