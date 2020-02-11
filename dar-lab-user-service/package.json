@@ -1,0 +1,31 @@
+{
+  "name": "dar-lab-user-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-ts": "tsc",
+    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\" --onFailure \"Compilation Failed\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/bluebird": "^3.5.29",
+    "@types/node": "^13.7.0",
+    "@types/validator": "^12.0.1",
+    "bcrypt": "^3.0.8",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^5.21.4",
+    "sequelize-typescript": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/mysql2": "github:types/mysql2",
+    "tsc-watch": "^4.1.0",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
+  }
+}
