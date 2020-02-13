@@ -1,6 +1,9 @@
 import exporess, { Router, Request, Response } from "express";
 import { Controller } from './controllers.types';
 import User from '../models/User';
+import Token from '../models/Token';
+
+
 import bcrypt from 'bcrypt';
 
 class UsersController implements Controller{
@@ -41,19 +44,29 @@ class UsersController implements Controller{
 
     auth(req: Request, res: Response) {
         const { username, password } = req.body;
-        User.findOne({where: {username}})
+        User.scope('withPassword').findOne({where: {username}})
             .then(user => {
                 if (!user) {
-                    return res.status(404).json({error: 'User not found'});
+                    return res.status(405).json({error: 'User not found'});
                 }
-                bcrypt.compare(password, user.password, (err, result) => {
+                bcrypt.compare(password, user.password, async (err, result: boolean) => {
                     
                     if (err) {
                         res.status(500).json(err);
-                    }
+                        return;
+                    } 
 
                     if (result) {
-                        res.json({status: 'success'});
+                        const UIDGenerator = require('uid-generator');
+                        const uidgen = new UIDGenerator();
+                        const token = await uidgen.generate();
+                        Token.create({userId: user.id, token})
+                            .then(savedToken => {
+                                res.json({status: 'success', token});
+                            }).catch((tokenErr: any) => {
+                                res.status(500).json(tokenErr);
+                            });
+
                     } else {
                         res.status(401).json({status: 'error'});
                     }

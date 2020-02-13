@@ -1,4 +1,14 @@
-import { Model, Table, Column } from "sequelize-typescript";
+import { Model, Table, Column, DefaultScope, Scopes } from "sequelize-typescript";
+
+@DefaultScope(() => ({
+    attributes: ['id', 'username', 'firstName', 'lastName']
+}))
+
+@Scopes(() => ({
+    withPassword: {
+        attributes: ['id', 'username', 'password']
+    }
+}))
 
 @Table({
     tableName: 'users',
