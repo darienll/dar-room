@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Faculty } from '../faculties.types';
-import { FacultyRestService } from '../faculties-rest.service';
+import { FacultyRestService } from '../../shared/faculties-rest.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

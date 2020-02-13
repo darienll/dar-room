@@ -2,7 +2,7 @@ import { Resolve, ActivatedRouteSnapshot } from '@angular/router'
 import { Faculty } from './faculties.types';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { FacultyRestService } from '../faculties/faculties-rest.service';
+import { FacultyRestService } from '../shared/faculties-rest.service';
 
 @Injectable()
 export class FacultyResolver implements Resolve<Faculty> {

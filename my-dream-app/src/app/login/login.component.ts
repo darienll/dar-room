@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthRestService } from '../shared/auth-rest.service';
+import { User } from '../shared/user.types';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,10 @@ export class LoginComponent implements OnInit {
 
   formSubmitted = false;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private authRestService: AuthRestService,
+    ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -26,8 +31,22 @@ export class LoginComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    localStorage.setItem('dar-lab-auth', this.form.value['login']);
-    this.router.navigate(['/']);
+    const newUser: User = {
+      username: this.form.get('login').value,
+      password: this.form.get('password').value,
+    }
+    this.authRestService.logIn(newUser)
+      .subscribe(resp => {
+        console.log('in request')
+        if(resp) {
+          localStorage.setItem('dar-lab-auth', resp.token);
+          this.router.navigate(['/']);
+        }
+      
+      },
+      (err) => (alert(err.error.error))
+      )
+  
   }
 
 

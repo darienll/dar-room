@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Student } from '../student.types';
-import { StudentRestService } from '../student-rest.service';
+import { StudentRestService } from '../../shared/student-rest.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -25,13 +25,11 @@ export class StudentComponent implements OnInit {
      { }
 
   ngOnInit() {
-
     this.form = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       score: new FormControl(0),
       courses: new FormArray([]),
-      // score :  new FormControl('', Validators.required),
     });
     this.route.data.subscribe(data => {
       if (data.student) {

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Faculty } from '../faculties.types';
-import { FacultyRestService } from '../faculties-rest.service';
+import { FacultyRestService } from '../../shared/faculties-rest.service';
 import { Router } from '@angular/router';
 
 @Component({

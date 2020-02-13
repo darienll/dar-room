@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Student } from './student.types';
+import { Student } from '../students/student.types';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

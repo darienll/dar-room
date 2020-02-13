@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject, Output, EventEmitter, TemplateRef, ViewChild } from '@angular/core';
 import { Student } from '../student.types';
-import { StudentRestService } from '../student-rest.service';
+import { StudentRestService } from '../../shared/student-rest.service';
 import { StudentListComponent } from '../student-list/student-list.component';
 import { Router } from '@angular/router';
 

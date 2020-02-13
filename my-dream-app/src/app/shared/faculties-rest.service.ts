@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Faculty } from './faculties.types';
+import { Faculty } from '../faculties/faculties.types';
 import { Injectable } from '@angular/core';
 
 @Injectable({
