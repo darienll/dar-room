@@ -11,41 +11,17 @@ import PostContext from './posts/PostContext';
 import { setUser } from './redux/actions/user.actions';
 import { getUser } from './redux/effects/user.effects';
 import { setPosts } from './redux/actions/post.actions';
+import { addPost } from './redux/actions/post.actions';
+
 import { getPosts } from './redux/effects/post.effects'
+import UserForm from './user/UserForm';
+import PostForm from './posts/PostForm';
 
 
-// const postsData = [
-//     {
-//       id: 1, 
-//       title: 'My first post',
-//       text: 'New Post in the blog',
-//       liked: false,
-//     },
-//     {
-//       id: 2,
-//       title: 'The second post',
-//       text: 'Test text in the 2nd post',
-//       liked: false,
-//     },
-//     {
-//       id: 3,
-//       title: 'The third post',
-//       text: 'Test text in the 3rd post',
-//       liked: false,
-//     }
-//   ];
 
-
-const Main = ({userData, getUser, isLoading, posts, getPosts}) => {
-
-    // const [posts, setPosts ] = useState(postsData);
+const Main = ({userData, getUser, isLoading, posts, getPosts, addPost}) => {
 
     const [likedCount, setLikedCount] = useState(0);
-
-    // const [user, setUser] = useState({
-    // firstName : 'Daryn',
-    // lastName : 'Amantayev'
-    // });
 
     useEffect(() => {
         setLikedCount(posts.filter(p => p.liked).length);
@@ -81,6 +57,8 @@ const Main = ({userData, getUser, isLoading, posts, getPosts}) => {
                     <PostContext.Provider value = { onLikedClicked }>
                         <PostsList items = { posts } />
                     </PostContext.Provider>
+                    <PostForm/>
+                    <UserForm/>
                 </Content>
             </div>
         </div>
@@ -91,4 +69,4 @@ const mapStateToProps = state => ({
     isLoading: state.user.loading,
     posts: state.posts.postsData
 })
-export default connect (mapStateToProps, { setUser, getUser, setPosts, getPosts })(Main);
+export default connect (mapStateToProps, { setUser, getUser, setPosts, getPosts, addPost })(Main);

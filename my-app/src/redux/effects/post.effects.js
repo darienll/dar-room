@@ -10,9 +10,16 @@ export function getPosts() {
                     return;
                 }
                 console.log(posts);
+                posts = posts.slice(0, 5);
                 
 
                 dispatch(setPosts(posts));
             })
     }    
 }
+
+// export function addPost() {
+//     return function(dispatch, getState) {
+//         return 
+//     }
+// }

@@ -4,3 +4,10 @@ export const setPosts = posts => {
         payload: posts,
     }
 }
+export const addPost = post => {
+    console.log(post);
+    return {
+        type: 'ADD_POST',
+        payload: post
+    }
+}
