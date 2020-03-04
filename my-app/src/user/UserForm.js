@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import FormInput from '../ui-kit/FormInput';
+import {Button, Input} from 'antd';
+
 export default () => {
 
     const [formData, setFormData] = useState({
@@ -62,16 +64,18 @@ export default () => {
     return (
         <div className="UserForm">
             <form onSubmit= {handlerSubmit} noValidate>
-                <FormInput  
+                <Input 
+                    type="text"  
                     name="email"
-                    required={true}
+                    required
                     placeholder="Enter email"
                     label = "Email"
+                    onBlur={inputChangeHandler}
                     onInputChange = { inputChangeHandler }
                 />
                 <div className="form-control">
                     <label>Password</label>
-                    <input type="password" 
+                    <Input type="password" 
                             name="password"
                             className="form-input"
                             onBlur={inputChangeHandler}
@@ -84,7 +88,7 @@ export default () => {
                     </div>
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <Button htmlTye="submit" class="primary" type="submit">Submit</Button>
                 </div>
             </form>
         </div>
