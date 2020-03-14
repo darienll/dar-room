@@ -1,0 +1,15 @@
+<a nz-button nzType="primary" routerLink="/home/category">Create category</a>
+<nz-table #table [nzData]="categories">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of table.data">
+      <td>{{ category.id }}</td>
+      <td>{{ category.name }}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</nz-table>
