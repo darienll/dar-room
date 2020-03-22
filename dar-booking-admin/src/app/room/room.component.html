@@ -1,1 +1,30 @@
-<p>room works!</p>
+<form nz-form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <nz-form-item>
+      <nz-input-group>
+        <nz-form-control nzErrorTip="Please enter category name">
+          <input
+            type="text"
+            nz-input
+            formControlName="name"
+            placeholder="Room name"
+          />
+        </nz-form-control>
+      </nz-input-group>
+      <nz-upload
+        class="avatar-uploader"
+        nzAction="{{ environment.apiUrl }}/uploader/image"
+        nzName="file"
+        nzListType="picture-card"
+        [nzShowUploadList]="false"
+        (nzChange)="handleChange($event)"
+      >
+        <ng-container *ngIf="!form.get('imageUrl').value">
+          <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+          <div class="ant-upload-text">Upload</div>
+        </ng-container>
+        <img width="400px" height="400px" *ngIf="form.get('imageUrl').value" [src]="environment.assetsUrl + '/' + form.get('imageUrl').value" class="avatar" />
+      </nz-upload>
+      <button nz-button nzType="primary" [appLoading]="isLoading" >Save</button>
+    </nz-form-item>
+  </form>
+  

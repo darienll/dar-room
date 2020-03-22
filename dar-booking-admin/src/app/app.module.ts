@@ -14,13 +14,16 @@ import { StoreModule } from '@ngrx/store';
 import { roomsReducer } from './state/rooms/room.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { RoomsEffect } from './state/rooms/rooms.effects';
+import { LoadingDirective } from './shared/loading.directive';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RoomsComponent,
-    RoomComponent
+    RoomComponent,
+    LoadingDirective
   ],
   imports: [
     BrowserModule,
