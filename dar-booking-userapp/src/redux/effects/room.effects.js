@@ -1,8 +1,9 @@
-import { setUser, setRooms} from "../actions/room.actions";
+import { setRooms} from "../actions/room.actions";
 
 export function getRooms() {
     return function(dispatch, getState) {
-        return fetch('http://localhost:8080/rooms')
+        const host = process.env.REACT_APP_HOST + 'rooms';
+        return fetch(host)
             .then(res => res.json())
             .then(rooms => {
                 if (!rooms || !rooms.length) {
