@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Meeting } from "./Meeting";
 
 @Entity({name:'users'})
 export class User {
@@ -12,5 +13,6 @@ export class User {
     @Column()
     lastName: string;
 
-
+    @OneToMany(type => Meeting, meeting => meeting.creator)
+    meetings_created: Meeting[];
 }

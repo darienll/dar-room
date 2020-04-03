@@ -9,6 +9,8 @@ import { RoomsModule } from './rooms/rooms.module';
 import { MulterModule } from '@nestjs/platform-express'
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { MeetingsModule } from './meeting/meeting.module';
+import { Meeting } from './models/Meeting';
 
 
 @Module({
@@ -19,11 +21,12 @@ import { join } from 'path';
       username: 'daryn',
       password: 'Ya4icAKi',
       database: 'darynDB',
-      entities: [User, Room],
+      entities: [User, Room, Meeting],
       synchronize: true
     }),
     UsersModule,
     RoomsModule,
+    MeetingsModule,
     MulterModule.register({
       dest:'./uploads'
     }),

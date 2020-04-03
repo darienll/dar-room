@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Meeting } from "./Meeting";
 
 @Entity({name: 'rooms'})
 export class Room {
@@ -10,5 +11,8 @@ export class Room {
 
     @Column({default: null})
     imageUrl: string;
+
+    @OneToMany(type => Meeting, meeting => meeting.room)
+    meetings: Meeting[];
 
 }
