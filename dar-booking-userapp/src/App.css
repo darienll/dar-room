@@ -1,6 +1,10 @@
+@import '~antd/dist/antd.css';
+
 .App {
   text-align: center;
   /* background-color: cornflowerblue; */
+  /* background-color: #ecfbff; */
+
 }
 
 .App-logo {
