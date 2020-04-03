@@ -1,60 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
+import React, { Component } from 'react';
 import './modal.css'
-import RoomsCalendar from '../calendar/Calendar';
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)',
-    width                 : '80%'
-    
-  }
-};
+import { Modal } from 'antd';
 
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#root')
+class RoomsModal extends Component {
+  state = { visible: false };
 
-function RoomsModal({ room }){
-  var subtitle;
-  const [modalIsOpen,setIsOpen] = React.useState(false);
-  function openModal() {
-    setIsOpen(true);
-    console.log(room)
-  }
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
 
-  function closeModal(){
-    setIsOpen(false);
-  }
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
 
+  render() {
     return (
       <div>
-        <button onClick={openModal}>Show details</button>
-        <div className="modal">
-          <Modal
-            isOpen={modalIsOpen}
-            onAfterOpen={afterOpenModal}
-            onRequestClose={closeModal}
-            style={customStyles}
-            contentLabel="Example Modal"
-          >
-            <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2>
-            <button onClick={closeModal}>close</button>
-            <div>I am a modal</div>
-            <RoomsCalendar/>
-            
-          </Modal>
-        </div>
+        {/* <Button type="primary" onClick={this.showModal}>
+          Book room
+        </Button> */}
+        <Modal
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          {this.props.children}
+          {/* <MeetingForm id = { this.props.id }/> */}
+        </Modal>
       </div>
     );
+  }
 }
 export default RoomsModal;
