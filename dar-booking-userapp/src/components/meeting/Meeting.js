@@ -5,13 +5,11 @@ function Meeting({ id }) {
     useEffect(() => {
         const getUsers = () => {
             const host = process.env.REACT_APP_HOST + 'users/meetings/' + id;
-            console.log(host);
             fetch(host)
                 .then((res) => {
                     return res.json()
                 })
                 .then((res) => {
-                    console.log(res);
                     setMeeting(res);
                     setParticipants(res.participants)
                 })

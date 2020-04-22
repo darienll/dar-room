@@ -5,18 +5,38 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import RoomBooking from './components/room-booking/RoomBooking';
+import Registration from './components/registration/Registration';
+import Login from './components/login/Login';
+import Nav from './components/navbar/Nav';
+import store from './redux/store';
+import { Provider } from 'react-redux';
+
 
 
 
 const routing = (
   <Router>
-    <div>
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/book/:id" component={RoomBooking} />
-        {/* <Route component={Notfound} /> */}
-      </Switch>
-    </div>
+    <Provider store={store}>
+      <div>
+        <Nav/>
+        <Switch>
+          <Route exact path="/">
+            <App/>
+          </Route>
+          <Route path="/book/:id" component = { RoomBooking }>
+            
+          </Route>
+          <Route path="/registration">
+            <Registration/>  
+          </Route>
+          <Route path="/login">
+              <Login/>
+          </Route>
+          {/* <Route component={Notfound} /> */}
+        </Switch>
+      </div>
+    </Provider>
+
   </Router>
 )
 ReactDOM.render(routing, document.getElementById('root'));

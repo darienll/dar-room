@@ -1,0 +1,27 @@
+.login-form {
+    border: 1px solid;
+    padding: 1rem 1rem;
+    border-radius: 3px!important;
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1;
+    height: 100%;
+    width: 50%;
+    margin: 5% auto;
+}
+.form-control {
+    display: flex;
+    flex: 1;
+    flex-flow: column nowrap;
+    margin-bottom: 1.5rem;
+}
+.form-input-error {
+    color:red;
+    font-size: 0.875rem;
+}
+label {
+    margin-bottom: 0.5rem;
+}
+input {
+    padding: 0.5rem 0.5rem;
+}   

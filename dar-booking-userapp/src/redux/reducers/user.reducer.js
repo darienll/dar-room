@@ -1,5 +1,8 @@
 const initialState = {
     usersData: [],
+    userData: {
+        'username': localStorage.getItem('username'),
+    }
 }
 
 export default function(state = initialState, action) {
@@ -8,6 +11,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 usersData:  action.payload
+            }
+        case 'SET_USER':
+            return {
+                ...state,
+                userData: action.payload
             }
         default:
             return state;

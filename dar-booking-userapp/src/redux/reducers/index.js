@@ -5,7 +5,7 @@ import userReducer from "./user.reducer";
 
 const appReducers = combineReducers({
     rooms: roomReducer,
-    users: userReducer
+    users: userReducer,
     
 });
 

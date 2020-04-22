@@ -10,7 +10,6 @@ export function getRooms() {
                     dispatch(setRooms(null));
                     return;
                 }
-                console.log(rooms);
                 dispatch(setRooms(rooms));
             })
             

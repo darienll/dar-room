@@ -4,22 +4,23 @@ import { setUsers } from '../../redux/actions/users.action';
 import { getUsers } from '../../redux/effects/users.effect';
 import { connect } from 'react-redux';
 import './MeetingForm.css'
-const MeetingForm = ({ setUsers, getUsers, usersData, id }) => {
+
+
+
+const MeetingForm = ({ setUsers, getUsers, usersData, id, dataChanged }) => {
     const { Option } = Select;
     const { RangePicker } = DatePicker;
+
+
     const handleSubmit = values => {
-        message.success("Success")
-        console.log(values)
         createMeeting(values)
     }
 
     const createMeeting = (values) => {
         let participants = []
         for (let i = 0; i < values.participants.length; i++) {
-            console.log(values.participants[i]);
             participants.push({ "id": values.participants[i] });
         }
-        console.log(participants)
         let data = {
             title: values.title,
             date: '2020-02-31',
@@ -30,7 +31,6 @@ const MeetingForm = ({ setUsers, getUsers, usersData, id }) => {
             },
             participants: participants
         }
-        console.log(data)
         const host = process.env.REACT_APP_HOST + 'meetings/'
         fetch(host, {
             method: 'POST',
@@ -40,40 +40,41 @@ const MeetingForm = ({ setUsers, getUsers, usersData, id }) => {
             },
             body: JSON.stringify(data)
         })
-    }
+        .then(response => response.json())
+        .then(data => {
+            message.success("Success")
+            dataChanged();
+        })
 
+    }
     const optionUsers = [];
     for (let i = 0; i < usersData.length; i++) {
-        optionUsers.push(<Option key={usersData[i].id}>{usersData[i].firstName + ' ' + usersData[i].lastName}</Option>);
+        if (usersData[i].username !== localStorage.getItem("username"))
+        optionUsers.push(<Option key={usersData[i].id}>{usersData[i].firstName + ' ' +
+        usersData[i].username + ' ' + usersData[i].lastName}</Option>);
     }
     useEffect(() => {
         getUsers();
-    })
-    function handleChange(value) {
-        console.log(`selected ${value}`);
-    }
+    }, [])
 
     return (
         <div className="meeting-form">
             <h2>Create meeting</h2>
             <Form onFinish={handleSubmit} layout='vertical' >
-                <Form.Item label="Название" name="title">
+                <Form.Item label="Название" name="title" rules={[{ required: true }]}>
                     <Input type="text" />
                 </Form.Item>
-                <Form.Item label="Выберите участников" name="participants">
+
+                <Form.Item label="Выберите участников" name="participants" rules={[{ required: true }]}>
                     <Select
                         mode="multiple"
                         style={{ width: '100%' }}
-                        placeholder="Please select"
-                        onChange={handleChange}
+                        placeholder="Please select"                        
                     >
                         {optionUsers}
                     </Select>
                 </Form.Item>
-                {/* <Form.Item label="Введите день" name="day">
-                            <DatePicker/>
-                    </Form.Item> */}
-                <Form.Item label="Выберите время" name="time">
+                <Form.Item label="Выберите время" name="time" rules={[{ required: true }]}>
                     <RangePicker showTime format="YYYY-MM-DD HH:mm:ss" />
                 </Form.Item>
                 <Form.Item >

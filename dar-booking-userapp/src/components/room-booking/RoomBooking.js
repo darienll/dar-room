@@ -15,9 +15,6 @@ function RoomBooking(props) {
     const [meetings, setMeetings] = useState([])
     const childRef = useRef();
 
-    useEffect(() => {
-        getData();
-    })
 
     const getData = () => {
         let id = props.match.params.id;
@@ -25,21 +22,30 @@ function RoomBooking(props) {
         fetch(host)
             .then(res => res.json())
             .then((result) => {
-                console.log(result);
                 setMeetings(result);
             })
     }
+
+    useEffect(() => {
+        getData();
+    }, [])
+
+    const updateData = () => {
+        getData();
+    }
+
+    
 
     return (
         <div className="meeting">
             <Provider store={store}>
                 <RoomsCalendar meetings={meetings} />
-                <RoomsModal id={props.match.params.id} ref={childRef}>
-                    <MeetingForm id={props.match.params.id} />
+                <RoomsModal ref={childRef}>
+                    <MeetingForm id={props.match.params.id} dataChanged = { updateData }/>
                 </RoomsModal>
-                <Button type="primary" onClick={() => childRef.current.showModal()}>Book room</Button>
-
-                {/* <MeetingForm id = { props.match.params.id }/> */}
+                <div className="meeting__button">
+                    <Button type="primary" onClick={() => childRef.current.showModal()} block>Book room</Button>
+                </div>
             </Provider>
 
         </div>

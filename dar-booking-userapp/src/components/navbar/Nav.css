@@ -1,0 +1,13 @@
+
+.loginInfo {
+    display:flex;
+    padding-top: 5px
+    
+}
+.loginInfo .user {
+    color: red;
+    padding-right: 15px;
+    padding-top: 3px;
+
+    
+}

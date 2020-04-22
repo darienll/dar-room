@@ -1,7 +1,13 @@
 .meeting {
+    padding-top: 50px;
     margin-left: 200px;
     margin-right: 100px;
     /* text-align: center; */
     width: 80%;
     margin: 0 auto;
+}
+.meeting__button Button {
+    /* text-align: center; */
+    height: 50px;
+    /* width: 50%; */
 }

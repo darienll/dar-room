@@ -17,9 +17,6 @@ class RoomsCalendar extends Component {
     this.child = React.createRef();
   }
   eventHandler = (e) => {
-    console.log("there");
-    console.log(e);
-    console.log(e.id)
     this.setState({
       id: e.id
     });

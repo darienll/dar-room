@@ -6,20 +6,22 @@ class RoomsModal extends Component {
   state = { visible: false };
 
   showModal = () => {
-    this.setState({
-      visible: true,
-    });
+    if (localStorage.getItem("token") != undefined)
+      this.setState({
+        visible: true,
+      });
+    else {
+      alert("Initially, you have to log in")
+    }
   };
 
   handleOk = e => {
-    console.log(e);
     this.setState({
       visible: false,
     });
   };
 
   handleCancel = e => {
-    console.log(e);
     this.setState({
       visible: false,
     });
@@ -28,16 +30,13 @@ class RoomsModal extends Component {
   render() {
     return (
       <div>
-        {/* <Button type="primary" onClick={this.showModal}>
-          Book room
-        </Button> */}
+
         <Modal
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
           {this.props.children}
-          {/* <MeetingForm id = { this.props.id }/> */}
         </Modal>
       </div>
     );

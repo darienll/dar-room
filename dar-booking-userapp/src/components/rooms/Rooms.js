@@ -10,7 +10,7 @@ import Room from '../room/Room';
 const Rooms = ({ setRooms, getRooms, roomsData }) => {
   useEffect(() => {
     getRooms();
-  })
+  }, [])
 
   return (
     <div className="rooms">
