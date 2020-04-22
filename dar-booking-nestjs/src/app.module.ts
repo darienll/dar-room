@@ -11,6 +11,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { MeetingsModule } from './meeting/meeting.module';
 import { Meeting } from './models/Meeting';
+import { Token } from './models/Token';
+
 
 
 @Module({
@@ -21,7 +23,7 @@ import { Meeting } from './models/Meeting';
       username: 'daryn',
       password: 'Ya4icAKi',
       database: 'darynDB',
-      entities: [User, Room, Meeting],
+      entities: [User, Room, Meeting, Token],
       synchronize: true
     }),
     UsersModule,

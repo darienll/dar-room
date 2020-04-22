@@ -9,7 +9,7 @@ export class MeetingConrtoller {
     }
     @Post()
     create(@Body() meeting) {
-        console.log(meeting)
+        (meeting)
         return this.meetingService.create(meeting);
     }
     @Get(':id')

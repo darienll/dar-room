@@ -8,10 +8,16 @@ export class User {
     id:number;
 
     @Column()
+    username: string;
+
+    @Column()
     firstName: string;
 
     @Column()
     lastName: string;
+
+    @Column()
+    password: string;
 
     @OneToMany(type => Meeting, meeting => meeting.creator)
     meetings_created: Meeting[];
